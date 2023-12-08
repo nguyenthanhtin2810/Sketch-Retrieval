@@ -19,7 +19,7 @@ with open('features/real_features.pkl', 'rb') as file:
     real_features = pickle.load(file)
 
 sketch_image = cv2.imread(sketch_image_path, cv2.IMREAD_GRAYSCALE)
-_, sketch_feature = hog(sketch_image, orientations=9, pixels_per_cell=(16, 16), cells_per_block=(2, 2), visualize=True)
+sketch_feature, _ = hog(sketch_image, orientations=9, pixels_per_cell=(16, 16), cells_per_block=(2, 2), visualize=True)
 sketch_feature = sketch_feature.reshape(1, -1)
 
 similarities = 1 - cosine_similarity(sketch_feature, real_features)

@@ -26,7 +26,7 @@ real_features = []
 for real_image_path in tqdm(real_image_paths, desc="Extracting Real Features"):
     image = cv2.imread(real_image_path, cv2.IMREAD_GRAYSCALE)
 
-    _, real_feature = hog(image, orientations=9, pixels_per_cell=(16, 16), cells_per_block=(2, 2), visualize=True)
+    real_feature, _ = hog(image, orientations=9, pixels_per_cell=(16, 16), cells_per_block=(2, 2), visualize=True)
     real_features.append(real_feature)
 real_features = np.array(real_features)
 real_features = real_features.reshape(len(real_features), -1)
@@ -38,7 +38,7 @@ sketch_features = []
 for sketch_image_path in tqdm(sketch_image_paths, desc="Extracting Sketch Features"):
     image = cv2.imread(sketch_image_path, cv2.IMREAD_GRAYSCALE)
 
-    _, sketch_feature = hog(image, orientations=9, pixels_per_cell=(16, 16), cells_per_block=(2, 2), visualize=True)
+    sketch_feature, _ = hog(image, orientations=9, pixels_per_cell=(16, 16), cells_per_block=(2, 2), visualize=True)
     sketch_features.append(sketch_feature)
 sketch_features = np.array(sketch_features)
 sketch_features = sketch_features.reshape(len(sketch_features), -1)
